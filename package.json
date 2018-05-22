@@ -1,0 +1,14 @@
+{
+  "name": "compilador-jison",
+  "version": "1.0.0",
+  "description": "trabalho-compiladores",
+  "main": "index2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karoline Dias Barreto",
+  "license": "ISC",
+  "dependencies": {
+    "fabric": "^2.3.0"
+  }
+}

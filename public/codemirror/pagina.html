@@ -1,0 +1,45 @@
+
+<!doctype html>
+<html>
+<head>
+<title>CodeMirror: Theme Demo</title>
+<meta charset="utf-8"/>
+
+
+<link rel="stylesheet" href="lib/codemirror.css">
+<link rel="stylesheet" href="theme/rubyblue.css">
+<script src="lib/codemirror.js"></script>
+<script src="addon/selection/active-line.js"></script>
+<script src="addon/edit/matchbrackets.js"></script>
+<style type="text/css">
+      .CodeMirror {border: 1px solid black; font-size:13px}
+    </style>
+	
+</head>
+<body onload="selectTheme()">
+<h2>Theme Demo</h2>
+<form><textarea id="code" name="code">
+</textarea></form>
+<input type="button" onclick="test()">
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+	mode: "text/x-csrc"
+  });
+
+  function selectTheme() {
+    var theme = "rubyblue";
+    editor.setOption("theme", theme);
+    location.hash = "#" + theme;
+  }
+    function test()
+{
+    var text = editor.getValue();
+    alert(text);
+}
+ 
+</script>
+  </body>
+  </html>
