@@ -1,0 +1,226 @@
+﻿body {
+	background: #bfc4c5;
+	font-size: 19px;
+}
+.header {
+	background: #17415a;
+	color: white !important;
+	width: 100%;
+	padding: 50px 0 220px;
+   
+}
+
+.header h1 {
+     margin-top: 3%;
+	color: white !important;
+}
+.headersucesso h1 {
+	color: #fff !important;
+}
+.headererro h1 {
+	color: #fff !important;
+}
+.container {
+	max-width: 80%;
+}
+.form-group {
+	margin-bottom: 30px;
+}
+.principal {
+	margin-top: -6%;
+	padding: 60px 60px;
+	background: #fff;
+}
+.rodape {
+	margin: 30px auto;
+	font-size: 12px;
+}
+.header h1 {
+    font-size: 90px;
+      font-family: inherit;
+}
+
+
+        .footer {
+            background: #bfc4c5;
+            height: 100px;
+            padding-bottom: 30px;
+            position: relative;
+            width: 100%;
+            border-bottom: 1px solid #CCCCCC;
+            border-top: 50px solid #bfc4c5;
+           
+        }
+
+            .footer p {
+                margin: 0;
+                
+            }
+
+            .footer img {
+                max-width: 100%;
+            }
+
+            .footer h3 {
+                letter-spacing: -.01em;
+                border-bottom: 1px solid #BAC1C8;
+                color: white;
+                font-size: 19px;
+                font-weight: bold;
+                line-height: 27px;
+                padding: 40px 0 10px;
+                text-transform: uppercase;
+                font-family: "Gotham SSm A","Gotham SSm B","Helvetica Neue",Helvetica,Arial,sans-serif;
+            }
+
+            .footer ul {
+                font-size: 13px;
+                list-style-type: none;
+                margin-left: 0;
+                padding-left: 0;
+                margin-top: 15px;
+                color: white;
+            }
+
+                .footer ul li a {
+                    padding: 0 0 5px 0;
+                    display: block;
+                }
+
+            .footer a {
+                color: white;
+            }
+
+        .footer-bottom {
+            background: #404b56;
+            border-top: 1px solid #DDDDDD;
+            padding-top: 35px;
+            padding-bottom: 25px;
+        }
+
+            .footer-bottom p.pull-left {
+                padding-top: 6px;
+                color: #adaeaf;
+            }
+
+
+                 .control {
+	position: relative;
+	display: block;
+	margin-bottom: 10px;
+	padding-left: 30px;
+	cursor: pointer;
+}
+
+.control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.control__indicator {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	background: #e6e6e6;
+}
+
+.control--radio .control__indicator {
+	border-radius: 50%;
+}
+
+/* Hover and focus states */
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+	background: #ccc;
+}
+
+/* Checked state */
+.control input:checked ~ .control__indicator {
+	background: #2aa1c0;
+}
+
+/* Hover state whilst checked */
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+	background: #0e647d;
+}
+
+/* Disabled state */
+.control input:disabled ~ .control__indicator {
+	pointer-events: none;
+	opacity: .6;
+	background: #e6e6e6;
+}
+
+/* Check mark */
+.control__indicator:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+
+/* Show check mark */
+.control input:checked ~ .control__indicator:after {
+	display: block;
+}
+
+/* Checkbox tick */
+.control--checkbox .control__indicator:after {
+	top: 4px;
+	left: 8px;
+	width: 3px;
+	height: 8px;
+	transform: rotate(45deg);
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+}
+
+/* Disabled tick colour */
+.control--checkbox input:disabled ~ .control__indicator:after {
+	border-color: #7b7b7b;
+}
+
+/* Radio button inner circle */
+.control--radio .control__indicator:after {
+	top: 7px;
+	left: 7px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+/* Disabled circle colour */
+.control--radio input:disabled ~ .control__indicator:after {
+	background: #7b7b7b;
+}
+@media (max-width: 480px){
+    h1 {
+        font-size: 40px !important;
+    }
+     h2 {
+        font-size: 20px !important;
+    }
+    #bot{
+        margin-left:14% !important;
+    }
+  li{
+      font-size: 13px !important;
+    }
+  h5{
+       font-size: 14px !important;
+  }
+  #texto-rodape
+  {
+font-size: 12px !important;
+  }
+}
+
+
+@media (max-width: 780px){   
+    #bot{
+        margin-left:20% !important;
+    }
+}

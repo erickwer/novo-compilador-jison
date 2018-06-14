@@ -1,0 +1,214 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Simulador de Desenho</title>
+	<link rel="stylesheet" href="public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="Site.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/css/mdb.min.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="public/js/underscore-min.js"></script>
+	<script src="gramatica.js"></script>
+	<script src="diagram.js"></script>
+	<link rel="stylesheet" href="public/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="public/codemirror/theme/rubyblue.css">
+	<script src="public/codemirror/lib/codemirror.js"></script>
+	<script src="public/codemirror/addon/selection/active-line.js"></script>
+	<script src="public/codemirror/addon/edit/matchbrackets.js"></script>
+
+
+	<style>
+		canvas {
+
+			width: 100%;
+			height: auto;
+		}
+
+		h5 {
+			font-size: 10px !important;
+			font-family: Arial, Serif;
+			font-style: oblique;
+		}
+
+		.btn.btn-lg {
+			font-size: 30px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.CodeMirror {
+			position: static;
+			height: auto;
+			background: #112435;
+			color: white;
+			font-size: 17px;
+		}
+
+		div.CodeMirror-selected {
+			background: #38566F;
+		}
+
+		.CodeMirror-line::selection,
+		.CodeMirror-line>span::selection,
+		.CodeMirror-line>span>span::selection {
+			background: rgba(56, 86, 111, 0.99);
+		}
+
+		.CodeMirror-line::-moz-selection,
+		.CodeMirror-line>span::-moz-selection,
+		.CodeMirror-line>span>span::-moz-selection {
+			background: rgba(56, 86, 111, 0.99);
+		}
+
+		.CodeMirror-gutters {
+			background: #1F4661;
+			border-right: 7px solid #3E7087;
+		}
+
+		.CodeMirror-guttermarker {
+			color: white;
+		}
+
+		.CodeMirror-guttermarker-subtle {
+			color: #3E7087;
+		}
+
+		.CodeMirror-linenumber {
+			color: white;
+		}
+
+		.CodeMirror-cursor {
+			border-left: 2px solid white;
+		}
+
+		.CodeMirror-activeline-background {
+			background: #173047;
+		}
+	</style>
+
+</head>
+
+<body onkeydown="teclas()">
+
+	<div class="header">
+		<div class="container" media="(max-width: 480px)">
+			<h1>Compilador Natural</h1>
+
+		</div>
+	</div>
+	<div class="container principal">
+
+		<div class="row" style="height:60%; margin-bottom: 30px;">
+
+			<div class="col-md-5 col-sm-12">
+				<div class="form-group">
+					<label for="exampleTextarea">
+						<h4>
+							<b>Editor</b>
+						</h4>
+					</label>
+					<textarea id="code" name="code"></textarea>
+					
+				</div>
+			</div>
+
+			<div class="col-md-1 " style="margin-top: 20%">
+				<div>
+					<button type="button" class="btn btn-primary btn-lg btn-block" onclick="Enviar1();">></button>
+				</div>
+			</div>
+			<div class="col-md-6  col-sm-12">
+				<label for="exampleTextarea">
+					<h4>
+						<b>Saída</b>
+					</h4>
+				</label>
+				<div class="row">
+				</div>
+				<div class="card">
+
+					<canvas id="myCanvas" height=4 95%; width=7 20px; style=" border:2px solid #d3d3d3;">
+						Your browser does not support the HTML5 canvas tag.
+					</canvas>
+
+
+					<div class="row">
+					</div>
+					<div class="card-block">
+
+						<h4 class="card-title">Saida de texto:</h4>
+
+						<p class="card-text" id="saidaText"></p>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
+		<div class="row"></div>
+		<div>Utilize a tecla
+			<a href="" title="Madebyoliver">F9</a> para execultar o código.</div>
+
+	</div>
+
+	</div>
+
+	<footer media="(max-width: 480px)">
+		<div class="footer" id="footer">
+
+		</div>
+
+
+		<div class="footer-bottom">
+			<div class="container" id="texto-rodape">
+				<p class="pull-left"> © 2016 . Desenvolvido por TONI. Direitos Reservados à TONI.C.JUNIOR </p>
+			</div>
+		</div>
+
+	</footer>
+	<img id="ponto" width="32" height="32" src="public/img/ponto.png" alt="The Scream" style="display:none">
+
+
+
+
+</body>
+
+
+
+
+
+<script>
+	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+		lineNumbers: true,
+		styleActiveLine: true,
+		matchBrackets: true,
+		mode: "text/x-csrc"
+	});
+	function teclas() {
+		if (event.keyCode == 120) {
+			Enviar1();
+		}
+	}
+
+	function Enviar1() {
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+
+		ctx.clearRect(0, 0, c.width, c.height);
+
+		var dados = editor.getValue();
+		//	document.getElementById("texto").innerHTML = "";
+		var programa = Diagram.parse(dados, c);
+
+	}
+
+
+</script>
+
+
+</html>
