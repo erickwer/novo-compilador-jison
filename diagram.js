@@ -24,14 +24,6 @@ function Diagram(c) {
      this.Direcao = "leste";
 }
 
-function DesenhaPonto(ctx, x, y, imagem) {
-    if (imagem == 1) {
-        var img = document.getElementById("ponto");
-    }
-
-    ctx.drawImage(img, x, y, 32, 32);
-
-}
 
 
 function ParseError(message, hash) {
@@ -52,7 +44,7 @@ Diagram.parse = function (input,c) {
     ctx.clearRect(0, 0,c.width ,c.height );      
     document.getElementById("saidaText").innerHTML = message;
     console.log(message);
-    //throw new ParseError(message, hash);
+    throw new ParseError(message, hash);
     };
     // Parse
     var diagram = gramatica.parse(input);
@@ -67,10 +59,10 @@ Diagram.parse = function (input,c) {
 Diagram.prototype.interpretador = function(dados) {
     for(var x = 0 ;x < dados.sentencas.length; x++)
     {       
+        console.log(dados.sentencas)
         if(dados.sentencas[x].name=="MOVER_PARA")
             { 
-            gramatica.yy.moverPara(dados.sentencas[x].params[0].value);
-                 
+            gramatica.yy.moverPara(dados.sentencas[x].params[0].value);  
             //console.log(dados.sentencas[x].params[0].value);            
             }
     }
@@ -79,14 +71,15 @@ Diagram.prototype.interpretador = function(dados) {
 
 
 Diagram.prototype.moverPara = function(ponto) {
-       this.img = 1;
-      gramatica.yy.Ponto(ponto[0].val,ponto[1].val);
-       this.desenharFormas();
+    this.img = 1;
+    gramatica.yy.Ponto(ponto[0].val,ponto[1].val);
+    this.desenharFormas();
 }
 
 Diagram.prototype.desenharFormas = function() {
     var ctx = this.c.getContext("2d");
-    ctx.clearRect(0, 0,this.c.width ,this.c.height );
+    ctx.clearRect(0, 0,this.c.width ,this.c.height);
+    console.log(this.TipoLinha)
     if(this.TipoLinha == 1)
     {
          var dashList = [5, 5, 5, 5];
@@ -95,34 +88,38 @@ Diagram.prototype.desenharFormas = function() {
 
          var dashList = [0, 0, 0, 0];
          ctx.setLineDash(dashList);
-    }
-
-  
+    } 
     $("#saidaText").html("");
 
     DesenhaPonto(ctx,this.x,this.y,this.img);
+    
 }
 
-
-Diagram.prototype.Ponto = function(x, y) {
-
-this.Rx = this.x;
-this.Ry = this.y;
-this.x = x;
-this.y = y;
-
+Diagram.prototype.Ponto = function (x, y) {
+    this.Rx = this.x;
+    this.Ry = this.y;
+    this.x = x;
+    this.y = y;
     return [x, y];
 }
 
-
-
-
-Diagram.prototype.saida = function(valor) {
- valor = valor.replace('"',"");
-valor = valor.replace('"',"");
-   $("#saidaText").html(valor);
+Diagram.prototype.saida = function (valor) {
+    console.log("Função de saida")
+    valor = valor.replace('"', "");
+    $("#saidaText").html(valor);
 }
- 
+
+function DesenhaPonto(ctx, x, y, imagem) {
+    console.log(imagem)
+    if (imagem == 1) {
+        var img = document.getElementById("ponto");
+    }
+
+    ctx.drawImage(img, x, y, 32, 32);
+
+    
+
+}
 
 
 
